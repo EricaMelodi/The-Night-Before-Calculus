@@ -2477,13 +2477,14 @@ MonoBehaviour:
   playerCamera: {fileID: 1051671633}
   walkSpeed: 20
   runSpeed: 30
+  crouchSpeed: 3
   jumpPower: 10
   gravity: 30
   lookSpeed: 10
   lookXLimit: 45
   defaultHeight: 2
   crouchHeight: 1
-  crouchSpeed: 3
+  cameraCrouchOffset: 0.5
 --- !u!143 &897221313
 CharacterController:
   m_ObjectHideFlags: 0
@@ -4620,7 +4621,7 @@ Transform:
   m_GameObject: {fileID: 1613030603}
   serializedVersion: 2
   m_LocalRotation: {x: 0, y: 0, z: 0, w: 1}
-  m_LocalPosition: {x: 60.5, y: 60.6, z: -8.8}
+  m_LocalPosition: {x: 60.6, y: 60.6, z: -8.8}
   m_LocalScale: {x: 0.23695123, y: 56.56049, z: 358.3469}
   m_ConstrainProportionsScale: 0
   m_Children: []
