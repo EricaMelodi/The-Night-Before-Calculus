@@ -27,6 +27,16 @@ public class PlayerMovement : MonoBehaviour
     private CharacterController controller;
     private float defaultCameraY;
 
+    [Header("Sounds")]
+    public AudioClip footstepClip;
+    public AudioSource walkingAudioSource;
+
+    public AudioClip sprintStepClip;
+    public AudioSource sprintingAudioSource;
+    private float footstepTimer;
+    public float walkingStepInterval;
+    public float sprintingStepInterval;
+
     void Start()
     {
         controller = GetComponent<CharacterController>();
@@ -76,6 +86,28 @@ public class PlayerMovement : MonoBehaviour
         }
 
         moveDirection.y = yVelocity;
+
+        // walking sounds
+        bool isMoving = controller.velocity.magnitude > 0.1f;
+        footstepTimer -= Time.deltaTime;
+
+        if (controller.isGrounded && isMoving)
+        {
+
+            if (footstepTimer <= 0f)
+            {
+                if (isRunning)
+                {
+                    sprintingAudioSource.PlayOneShot(sprintStepClip);
+                    footstepTimer = sprintingStepInterval;
+                }
+                else
+                {
+                    walkingAudioSource.PlayOneShot(footstepClip);
+                    footstepTimer = walkingStepInterval;
+                }
+            }
+        }
 
         // Crouch height + camera
         float targetHeight = isCrouching ? crouchHeight : defaultHeight;
