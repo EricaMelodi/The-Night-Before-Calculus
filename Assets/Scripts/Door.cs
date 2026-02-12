@@ -1,10 +1,7 @@
 using UnityEngine;
 
-public class Door : MonoBehaviour
+public class Door : MonoBehaviour, IInteractable
 {
-
-    public Transform player;
-    public float interactDistance = 10f;
     public float openAngle = 90f;
     public float openSpeed = 2f;
 
@@ -16,25 +13,38 @@ public class Door : MonoBehaviour
     {
         closedRotation = transform.rotation;
         openRotation = Quaternion.Euler(transform.eulerAngles + new Vector3(0, openAngle, 0));
+
+        // BoxCollider ska inte vara trigger
+        Collider col = GetComponent<Collider>();
+        if (col != null)
+            col.isTrigger = false;
     }
 
     void Update()
     {
-        if (Vector3.Distance(player.position, transform.position) <= interactDistance)
-        {
-            if (Input.GetKeyDown(KeyCode.E))
-            {
-                isOpen = !isOpen;
-            }
-        }
+       
+        Quaternion target = isOpen ? openRotation : closedRotation;
+        transform.rotation = Quaternion.Slerp(transform.rotation, target, Time.deltaTime * openSpeed);
+    }
 
-        if (isOpen)
+    // PlayerInteraction kallar detta när E trycks
+    public void Interact()
+    {
+        // ÄNDRA TILL 0 SENARE FIX!!!!
+        if (Paper.papersLeft == 7)
         {
-            transform.rotation = Quaternion.Slerp(transform.rotation, openRotation, Time.deltaTime * openSpeed);
+            isOpen = !isOpen;
         }
-        else
+    }
+
+    // Text som ska visas i prompten
+    public string GetInteractText()
+    {
+        // ÄNDRA TILL 0 SENARE FIX!!!!
+        if(Paper.papersLeft != 7)
         {
-            transform.rotation = Quaternion.Slerp(transform.rotation, closedRotation, Time.deltaTime * openSpeed);
+            return "Still missing pages";
         }
+        return isOpen ? "Press E to close door" : "Press E to open door";
     }
 }
