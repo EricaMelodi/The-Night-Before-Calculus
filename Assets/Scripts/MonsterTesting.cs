@@ -3,16 +3,15 @@ using UnityEngine;
 public class MonsterTesting : MonoBehaviour
 {
     public Transform target;
-    public float moveSpeed = 3f;
-    public float rotationSpeed = 3f;
-    public float range = 20f;
-    public float stop = 0f;
+    public float walkSpeed = 2f;
+    public float runSpeed = 4f;
+    public float rotationSpeed = 5f;
+    public float range = 10f;
+    public float stopDistance = 1f;
 
     [Header("Roaming")]
-    public float roamRadius = 20f;
-    public float roamInterval = 20f;
+    public float roamRadius = 30f;
     private Vector3 roamTarget;
-    private float roamTimer = 0f;
 
     [Header("Forced Chase")]
     public float forcedChaseDuration = 30f;
@@ -22,49 +21,48 @@ public class MonsterTesting : MonoBehaviour
     private bool forcedChaseOnCooldown = false;
     private float forcedChaseTimer = 0f;
 
-    private Transform myTransform;
-    private bool playerLost = false;
+    private Rigidbody rb;
     private Animator anim;
+    private bool playerLost = false;
 
     void Awake()
     {
         if (target == null)
             target = GameObject.FindWithTag("Player").transform;
 
-        myTransform = transform;
+        rb = GetComponent<Rigidbody>();
+        rb.freezeRotation = true; // Freeze X/Z rotation to prevent tipping
+
         anim = GetComponent<Animator>();
 
         SetNewRoamTarget();
-        anim.SetBool("isWalking", false);
+        anim.SetBool("isRunning", false); // Start in walking state
     }
 
     void Update()
     {
         if (playerLost)
         {
-            anim.SetBool("isWalking", false);
+            anim.SetBool("isRunning", false);
             return;
         }
 
         HandleForcedChaseTimer();
 
-        float distance = Vector3.Distance(myTransform.position, target.position);
+        float distance = Vector3.Distance(transform.position, target.position);
 
-        // Forced chase ignores vision range
-        if (isForcedChasing)
-        {
+        if (isForcedChasing || distance <= range)
             ChasePlayer(distance);
-        }
         else
-        {
-            if (distance <= range)
-                ChasePlayer(distance);
-            else
-                Roam();
-        }
+            Roam();
 
-        if (distance <= 2f)
+        if (distance <= 1f)
             LoseGame();
+    }
+
+    void FixedUpdate()
+    {
+        // All Rigidbody movement happens here (handled in ChasePlayer/Roam)
     }
 
     public void ForceChase()
@@ -78,11 +76,9 @@ public class MonsterTesting : MonoBehaviour
 
     void HandleForcedChaseTimer()
     {
-        if (!isForcedChasing)
-            return;
+        if (!isForcedChasing) return;
 
         forcedChaseTimer -= Time.deltaTime;
-
         if (forcedChaseTimer <= 0f)
         {
             isForcedChasing = false;
@@ -98,73 +94,84 @@ public class MonsterTesting : MonoBehaviour
 
     void ChasePlayer(float distance)
     {
-        Vector3 direction = target.position - myTransform.position;
+        Vector3 direction = target.position - transform.position;
+
+        // Keep only horizontal direction
         direction.y = 0;
 
-        if (direction != Vector3.zero)
+        if (direction.sqrMagnitude > 0.01f)
         {
+            // Smooth rotation
             Quaternion lookRotation = Quaternion.LookRotation(direction);
-            myTransform.rotation = Quaternion.Slerp(
-                myTransform.rotation,
-                lookRotation,
-                rotationSpeed * Time.deltaTime
-            );
+            rb.MoveRotation(Quaternion.Slerp(rb.rotation, lookRotation, rotationSpeed * Time.fixedDeltaTime));
         }
 
-        if (distance > stop)
+        // Only move if further than stop distance
+        if (distance > stopDistance)
         {
-            myTransform.position += myTransform.forward * moveSpeed * Time.deltaTime;
-            anim.SetBool("isWalking", true);
+            Vector3 move = transform.forward * runSpeed * Time.fixedDeltaTime;
+            Vector3 newPos = rb.position + move;
+
+            // Stick to ground using raycast
+            RaycastHit hit;
+            if (Physics.Raycast(newPos + Vector3.up * 2f, Vector3.down, out hit, 10f))
+            {
+                newPos.y = hit.point.y;
+            }
+
+            rb.MovePosition(newPos);
+            anim.SetBool("isRunning", true);
         }
         else
         {
-            anim.SetBool("isWalking", false);
+            anim.SetBool("isRunning", false);
         }
     }
 
     void Roam()
     {
-        roamTimer += Time.deltaTime;
-
-        if (roamTimer >= roamInterval)
-        {
-            SetNewRoamTarget();
-            roamTimer = 0f;
-        }
-
-        Vector3 direction = roamTarget - myTransform.position;
+        Vector3 direction = roamTarget - transform.position;
         direction.y = 0;
 
-        if (direction.magnitude > 0.1f)
+        if (direction.magnitude > 0.5f)
         {
+            // Smooth rotation
             Quaternion lookRotation = Quaternion.LookRotation(direction);
-            myTransform.rotation = Quaternion.Slerp(
-                myTransform.rotation,
-                lookRotation,
-                rotationSpeed * Time.deltaTime
-            );
+            rb.MoveRotation(Quaternion.Slerp(rb.rotation, lookRotation, rotationSpeed * Time.fixedDeltaTime));
 
-            myTransform.position += myTransform.forward * moveSpeed * Time.deltaTime;
-            anim.SetBool("isWalking", true);
+            // Move forward
+            Vector3 move = transform.forward * walkSpeed * Time.fixedDeltaTime;
+            Vector3 newPos = rb.position + move;
+
+            // Stick to ground using raycast
+            RaycastHit hit;
+            if (Physics.Raycast(newPos + Vector3.up * 2f, Vector3.down, out hit, 10f))
+            {
+                newPos.y = hit.point.y;
+            }
+
+            rb.MovePosition(newPos);
+            anim.SetBool("isRunning", false); // Walk animation handled by Animator
         }
         else
         {
-            anim.SetBool("isWalking", false);
+            SetNewRoamTarget();
         }
     }
+
 
     void SetNewRoamTarget()
     {
         Vector3 randomDirection = Random.insideUnitSphere * roamRadius;
         randomDirection.y = 0;
-        roamTarget = myTransform.position + randomDirection;
+        roamTarget = transform.position + randomDirection;
     }
 
     void LoseGame()
     {
         Debug.Log("You lose!");
         playerLost = true;
-        anim.SetBool("isWalking", false);
+        anim.SetBool("isRunning", false);
 
         if (target != null)
         {

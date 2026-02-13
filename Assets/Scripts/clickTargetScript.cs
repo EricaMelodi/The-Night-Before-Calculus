@@ -2,14 +2,17 @@ using UnityEngine;
 
 public class ClickTarget : MonoBehaviour
 {
-    public MonsterTesting monster;
+    [SerializeField] private MonsterTesting monster;
 
     void OnMouseDown()
     {
-        if (monster != null)
-            monster.ForceChase();
+        if (monster == null)
+        {
+            Debug.LogWarning("Monster reference not set on " + gameObject.name);
+            return;
+        }
 
-        // "Collect" the cube
+        monster.ForceChase();
         gameObject.SetActive(false);
     }
 }
