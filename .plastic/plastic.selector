@@ -1,4 +1,0 @@
-repository "The Night Before Calculus/The Night Before Calculus@5773980116060@cloud"
-  path "/"
-    br "/main"
-    co "/main"

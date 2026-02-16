@@ -160,14 +160,27 @@ public class MonsterTesting : MonoBehaviour
         }
 
 
-        void SetNewRoamTarget()
-        {
-            Vector3 randomDirection = Random.insideUnitSphere * roamRadius;
-            randomDirection.y = 0;
-            roamTarget = transform.position + randomDirection;
-        }
+    void SetNewRoamTarget()
+    {
+        Vector3 randomDirection = Random.insideUnitSphere * roamRadius;
+        randomDirection.y = 0;
+        Vector3 potentialTarget = transform.position + randomDirection;
 
-        void LoseGame()
+        // Raycast ner för att hitta marken
+        RaycastHit hit;
+        if (Physics.Raycast(potentialTarget + Vector3.up * 10f, Vector3.down, out hit, 20f))
+        {
+            roamTarget = hit.point;
+        }
+        else
+        {
+            // Om raycast misslyckas, håll dig på nuvarande position
+            roamTarget = transform.position;
+        }
+    }
+
+
+    void LoseGame()
         {
             Debug.Log("You lose!");
             playerLost = true;
