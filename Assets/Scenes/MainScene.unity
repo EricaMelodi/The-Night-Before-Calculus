@@ -1583,8 +1583,8 @@ Transform:
   m_PrefabAsset: {fileID: 0}
   m_GameObject: {fileID: 258947422}
   serializedVersion: 2
-  m_LocalRotation: {x: 0.40821788, y: -0.23456968, z: 0.10938163, w: 0.8754261}
-  m_LocalPosition: {x: 116, y: 4, z: -93}
+  m_LocalRotation: {x: 0.08365848, y: -0.6614061, z: 0.07461112, w: 0.741604}
+  m_LocalPosition: {x: 51.691826, y: 26.86626, z: -32.122196}
   m_LocalScale: {x: 1, y: 1, z: 1}
   m_ConstrainProportionsScale: 0
   m_Children: []
@@ -2228,9 +2228,11 @@ MonoBehaviour:
   m_Name: 
   m_EditorClassIdentifier: 
   player: {fileID: 897221311}
+  walkSpeed: 20
+  runSpeed: 30
   roamRadius: 100
   roamWaitTime: 0
-  chaseRadius: 30
+  chaseRadius: 60
 --- !u!195 &452064775
 NavMeshAgent:
   m_ObjectHideFlags: 0
@@ -2242,9 +2244,9 @@ NavMeshAgent:
   m_AgentTypeID: 0
   m_Radius: 0.5
   m_Speed: 20
-  m_Acceleration: 30
+  m_Acceleration: 300
   avoidancePriority: 50
-  m_AngularSpeed: 120
+  m_AngularSpeed: 500
   m_StoppingDistance: 1
   m_AutoTraverseOffMeshLink: 1
   m_AutoBraking: 1
@@ -3543,8 +3545,8 @@ MonoBehaviour:
   m_Name: 
   m_EditorClassIdentifier: 
   playerCamera: {fileID: 1051671633}
-  walkSpeed: 20
-  runSpeed: 30
+  walkSpeed: 30
+  runSpeed: 40
   crouchSpeed: 3
   jumpPower: 10
   gravity: 30
@@ -6059,7 +6061,7 @@ Transform:
   m_GameObject: {fileID: 1290933175}
   serializedVersion: 2
   m_LocalRotation: {x: -0, y: -0.70298415, z: -0, w: 0.7112056}
-  m_LocalPosition: {x: 114.6, y: 10.76, z: 95.6}
+  m_LocalPosition: {x: 112.59, y: 10.76, z: 95.62}
   m_LocalScale: {x: 0.23695123, y: 43.82496, z: 105.44819}
   m_ConstrainProportionsScale: 0
   m_Children: []

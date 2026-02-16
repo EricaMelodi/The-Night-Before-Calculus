@@ -8,6 +8,10 @@ public class MonsterAI : MonoBehaviour
     private NavMeshAgent agent;
     private Animator animator;
 
+    [Header("Speed Settings")]
+    public float walkSpeed = 2f;       // Speed when roaming
+    public float runSpeed = 5f;        // Speed when chasing player
+
     [Header("Roaming Settings")]
     public float roamRadius = 20f;
     public float roamWaitTime = 3f;
@@ -22,6 +26,7 @@ public class MonsterAI : MonoBehaviour
     {
         agent = GetComponent<NavMeshAgent>();
         animator = GetComponent<Animator>();
+        agent.speed = walkSpeed; // Default to walking
         ChooseRoamTarget();
     }
 
@@ -32,12 +37,14 @@ public class MonsterAI : MonoBehaviour
         if (distanceToPlayer <= chaseRadius)
         {
             // Chase the player
+            agent.speed = runSpeed; // Set agent speed to running
             agent.SetDestination(player.position);
-            animator.SetBool("isRunning", true);  // Switch to run animation
+            animator.SetBool("isRunning", true);
         }
         else
         {
             // Roaming
+            agent.speed = walkSpeed; // Set agent speed to walking
             animator.SetBool("isRunning", false); // Switch to walk animation
 
             if (!agent.pathPending && agent.remainingDistance < 0.5f)
@@ -51,7 +58,7 @@ public class MonsterAI : MonoBehaviour
             }
         }
 
-        // Optional: update animator speed if you have a blend tree
+        // Optional: update animator speed for blend tree
         animator.SetFloat("speed", agent.velocity.magnitude);
     }
 
