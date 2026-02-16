@@ -1708,7 +1708,7 @@ MonoBehaviour:
   m_PrefabInstance: {fileID: 0}
   m_PrefabAsset: {fileID: 0}
   m_GameObject: {fileID: 260796485}
-  m_Enabled: 0
+  m_Enabled: 1
   m_EditorHideFlags: 0
   m_Script: {fileID: 11500000, guid: 7a5ac11cc976e418e8d13136b07e1f52, type: 3}
   m_Name: 
@@ -2227,15 +2227,9 @@ MonoBehaviour:
   m_Script: {fileID: 11500000, guid: f6af73a5ebb6241a7a43423d42188739, type: 3}
   m_Name: 
   m_EditorClassIdentifier: 
-  target: {fileID: 0}
-  walkSpeed: 1
-  runSpeed: 2
-  rotationSpeed: 5
-  range: 60
+  target: {fileID: 897221311}
   stopDistance: 1
-  roamRadius: 30
-  forcedChaseDuration: 30
-  forcedChaseCooldown: 20
+  roamRadius: 100
 --- !u!195 &452064775
 NavMeshAgent:
   m_ObjectHideFlags: 0
@@ -2243,7 +2237,7 @@ NavMeshAgent:
   m_PrefabInstance: {fileID: 0}
   m_PrefabAsset: {fileID: 0}
   m_GameObject: {fileID: 452064773}
-  m_Enabled: 0
+  m_Enabled: 1
   m_AgentTypeID: 0
   m_Radius: 0.5
   m_Speed: 3.5
@@ -2326,7 +2320,7 @@ BoxCollider:
   m_ProvidesContacts: 1
   m_Enabled: 1
   serializedVersion: 3
-  m_Size: {x: 1, y: 1, z: 1}
+  m_Size: {x: 1, y: 0, z: 1}
   m_Center: {x: 0, y: 0, z: 0}
 --- !u!1001 &493468406
 PrefabInstance:
@@ -4704,7 +4698,7 @@ PrefabInstance:
       objectReference: {fileID: 0}
     - target: {fileID: -8679921383154817045, guid: b985e16bc5a0f46ddaa0d7bdc0d6d935, type: 3}
       propertyPath: m_LocalPosition.y
-      value: 0.67
+      value: -1.03
       objectReference: {fileID: 0}
     - target: {fileID: -8679921383154817045, guid: b985e16bc5a0f46ddaa0d7bdc0d6d935, type: 3}
       propertyPath: m_LocalPosition.z
