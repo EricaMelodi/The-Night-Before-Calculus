@@ -3,11 +3,10 @@ using UnityEngine.SceneManagement;
 
 public class StartScreen : MonoBehaviour
 {
-    public string gameSceneName = "MainScene";
 
     public void StartGame()
     {
-        SceneManager.LoadScene(gameSceneName);
+        SceneManager.LoadScene("MainScene");
     }
 
     public void ExitGame()
