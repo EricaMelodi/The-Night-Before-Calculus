@@ -1,10 +1,10 @@
-using UnityEngine;
 using TMPro;
+using UnityEngine;
 
 public class PlayerInteraction : MonoBehaviour
 {
     [Header("Settings")]
-    public float interactDistance = 50f;
+    public float interactDistance = 80f;
     public TextMeshProUGUI interactPrompt;
 
     private Camera cam;
@@ -30,16 +30,15 @@ public class PlayerInteraction : MonoBehaviour
 
         CheckForInteractable();
     }
-
     void CheckForInteractable()
     {
+        float radius = 2.0f; // Hur stor “tålighet” raycasten ska ha
         Ray ray = new Ray(cam.transform.position, cam.transform.forward);
         RaycastHit hit;
 
-        // Visualisera raycast i Scene View
         Debug.DrawRay(cam.transform.position, cam.transform.forward * interactDistance, Color.red);
 
-        if (Physics.Raycast(ray, out hit, interactDistance))
+        if (Physics.SphereCast(ray, radius, out hit, interactDistance))
         {
             IInteractable interactable = hit.collider.GetComponentInParent<IInteractable>();
 
@@ -50,14 +49,12 @@ public class PlayerInteraction : MonoBehaviour
                 interactPrompt.gameObject.SetActive(true);
 
                 if (Input.GetKeyDown(KeyCode.E))
-                {
                     currentInteractable.Interact();
-                }
-                return; // Vi har hittat något → stoppa här
+
+                return;
             }
         }
 
-        // Ingen interactable träffad → göm prompt
         currentInteractable = null;
         interactPrompt.gameObject.SetActive(false);
     }

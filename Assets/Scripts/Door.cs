@@ -30,8 +30,8 @@ public class Door : MonoBehaviour, IInteractable
     // PlayerInteraction kallar detta när E trycks
     public void Interact()
     {
-        // ÄNDRA TILL 0 SENARE FIX!!!!
-        if (Paper.papersLeft == 7)
+        // ÄNDRA TILL 0 SENARE FIX!!!! chekkk
+        if (Paper.papersLeft == 0)
         {
             isOpen = !isOpen;
         }
@@ -40,8 +40,8 @@ public class Door : MonoBehaviour, IInteractable
     // Text som ska visas i prompten
     public string GetInteractText()
     {
-        // ÄNDRA TILL 0 SENARE FIX!!!!
-        if(Paper.papersLeft != 7)
+        // ÄNDRA TILL 0 SENARE FIX!!!! chekkkk
+        if(Paper.papersLeft != 0)
         {
             return "Still missing pages";
         }

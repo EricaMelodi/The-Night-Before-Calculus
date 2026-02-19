@@ -11,8 +11,14 @@ public class Paper : MonoBehaviour, IInteractable
         Destroy(gameObject);
     }
 
-    public string GetInteractText()
+    public string GetInteractText() => "Press E to collect paper";
+
+    void OnTriggerEnter(Collider other)
     {
-        return "Press E to collect paper";
+        if (other.CompareTag("Player"))
+        {
+            // Visa UI, t.ex.
+            Debug.Log("Press E to collect");
+        }
     }
 }
