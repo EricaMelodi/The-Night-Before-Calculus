@@ -4,13 +4,13 @@ using UnityEngine.AI;
 public class MonsterAI : MonoBehaviour
 {
     [Header("References")]
-    public Transform player;           // Player Transform
+    public Transform player;
     private NavMeshAgent agent;
     private Animator animator;
 
     [Header("Speed Settings")]
-    public float walkSpeed = 2f;       // Speed when roaming
-    public float runSpeed = 5f;        // Speed when chasing player
+    public float walkSpeed = 2f;
+    public float runSpeed = 5f;
 
     [Header("Roaming Settings")]
     public float roamRadius = 20f;
@@ -18,6 +18,12 @@ public class MonsterAI : MonoBehaviour
 
     [Header("Chase Settings")]
     public float chaseRadius = 10f;
+
+    [Header("Hunt Settings")]
+    public float huntDuration = 30f;
+
+    private bool isHunting = false;
+    private float huntTimer = 0f;
 
     private Vector3 roamTarget;
     private float waitTimer;
@@ -32,7 +38,8 @@ public class MonsterAI : MonoBehaviour
     {
         agent = GetComponent<NavMeshAgent>();
         animator = GetComponent<Animator>();
-        agent.speed = walkSpeed; // Default to walking
+
+        agent.speed = walkSpeed;
         ChooseRoamTarget();
         musicPlaying = false;
     }
@@ -41,10 +48,20 @@ public class MonsterAI : MonoBehaviour
     {
         float distanceToPlayer = Vector3.Distance(transform.position, player.position);
 
-        if (distanceToPlayer <= chaseRadius)
+        // Handle Hunt Timer
+        if (isHunting)
         {
-            // Chase the player
-            agent.speed = runSpeed; // Set agent speed to running
+            huntTimer -= Time.deltaTime;
+            if (huntTimer <= 0f)
+            {
+                isHunting = false;
+            }
+        }
+
+        // Chase if hunting OR player in radius
+        if (isHunting || distanceToPlayer <= chaseRadius)
+        {
+            agent.speed = runSpeed;
             agent.SetDestination(player.position);
             animator.SetBool("isRunning", true);
 
@@ -53,8 +70,8 @@ public class MonsterAI : MonoBehaviour
         else
         {
             // Roaming
-            agent.speed = walkSpeed; // Set agent speed to walking
-            animator.SetBool("isRunning", false); // Switch to walk animation
+            agent.speed = walkSpeed;
+            animator.SetBool("isRunning", false);
 
             if (!agent.pathPending && agent.remainingDistance < 0.5f)
             {
@@ -69,14 +86,20 @@ public class MonsterAI : MonoBehaviour
             StopChaseMusic();
         }
 
-        // Optional: update animator speed for blend tree
         animator.SetFloat("speed", agent.velocity.magnitude);
+    }
+
+    public void TriggerHunt()
+    {
+        isHunting = true;
+        huntTimer = huntDuration;   // Resets to 30 seconds every time
     }
 
     private void ChooseRoamTarget()
     {
         Vector3 randomDirection = Random.insideUnitSphere * roamRadius;
         randomDirection += transform.position;
+
         NavMeshHit hit;
         if (NavMesh.SamplePosition(randomDirection, out hit, roamRadius, NavMesh.AllAreas))
         {
@@ -105,7 +128,6 @@ public class MonsterAI : MonoBehaviour
             musicPlaying = true;
         }
     }
-
 
     private void StopChaseMusic()
     {

@@ -1046,6 +1046,7 @@ MonoBehaviour:
   m_Script: {fileID: 11500000, guid: 2d8f41400fa074e8a8a793985092e043, type: 3}
   m_Name: 
   m_EditorClassIdentifier: 
+  monster: {fileID: 452064774}
 --- !u!65 &75162244
 BoxCollider:
   m_ObjectHideFlags: 0
@@ -2060,6 +2061,7 @@ MonoBehaviour:
   m_Script: {fileID: 11500000, guid: 2d8f41400fa074e8a8a793985092e043, type: 3}
   m_Name: 
   m_EditorClassIdentifier: 
+  monster: {fileID: 452064774}
 --- !u!65 &131950173
 BoxCollider:
   m_ObjectHideFlags: 0
@@ -2204,6 +2206,7 @@ MonoBehaviour:
   m_Script: {fileID: 11500000, guid: 2d8f41400fa074e8a8a793985092e043, type: 3}
   m_Name: 
   m_EditorClassIdentifier: 
+  monster: {fileID: 452064774}
 --- !u!65 &137153164
 BoxCollider:
   m_ObjectHideFlags: 0
@@ -7475,6 +7478,7 @@ MonoBehaviour:
   roamRadius: 100
   roamWaitTime: 0
   chaseRadius: 60
+  huntDuration: 30
   chaseMusicSource: {fileID: 1095419727}
   chaseMusicClip: {fileID: 8300000, guid: 24ec0c26f63dfaf9d85ba7815a6db40b, type: 3}
   musicVolume: 0.3
@@ -9619,6 +9623,7 @@ MonoBehaviour:
   m_Script: {fileID: 11500000, guid: 2d8f41400fa074e8a8a793985092e043, type: 3}
   m_Name: 
   m_EditorClassIdentifier: 
+  monster: {fileID: 452064774}
 --- !u!65 &572320770
 BoxCollider:
   m_ObjectHideFlags: 0
@@ -9897,6 +9902,7 @@ MonoBehaviour:
   m_Script: {fileID: 11500000, guid: 2d8f41400fa074e8a8a793985092e043, type: 3}
   m_Name: 
   m_EditorClassIdentifier: 
+  monster: {fileID: 452064774}
 --- !u!65 &595062444
 BoxCollider:
   m_ObjectHideFlags: 0
@@ -10221,6 +10227,7 @@ MonoBehaviour:
   m_Script: {fileID: 11500000, guid: 2d8f41400fa074e8a8a793985092e043, type: 3}
   m_Name: 
   m_EditorClassIdentifier: 
+  monster: {fileID: 452064774}
 --- !u!65 &616891392
 BoxCollider:
   m_ObjectHideFlags: 0
@@ -16345,6 +16352,7 @@ MonoBehaviour:
   m_Script: {fileID: 11500000, guid: 2d8f41400fa074e8a8a793985092e043, type: 3}
   m_Name: 
   m_EditorClassIdentifier: 
+  monster: {fileID: 452064774}
 --- !u!65 &1053301169
 BoxCollider:
   m_ObjectHideFlags: 0
@@ -16727,7 +16735,7 @@ PrefabInstance:
       objectReference: {fileID: 2100000, guid: 1f4e24a2742714bf18936faf22683cab, type: 2}
     - target: {fileID: 919132149155446097, guid: b985e16bc5a0f46ddaa0d7bdc0d6d935, type: 3}
       propertyPath: m_Name
-      value: Ch31_nonPBR
+      value: Monster
       objectReference: {fileID: 0}
     - target: {fileID: 3102197598461991335, guid: b985e16bc5a0f46ddaa0d7bdc0d6d935, type: 3}
       propertyPath: 'm_Materials.Array.data[0]'
@@ -18144,6 +18152,7 @@ MonoBehaviour:
   m_Script: {fileID: 11500000, guid: 2d8f41400fa074e8a8a793985092e043, type: 3}
   m_Name: 
   m_EditorClassIdentifier: 
+  monster: {fileID: 452064774}
 --- !u!65 &1145653155
 BoxCollider:
   m_ObjectHideFlags: 0
@@ -20533,6 +20542,7 @@ MonoBehaviour:
   m_Script: {fileID: 11500000, guid: 2d8f41400fa074e8a8a793985092e043, type: 3}
   m_Name: 
   m_EditorClassIdentifier: 
+  monster: {fileID: 452064774}
 --- !u!65 &1293243334
 BoxCollider:
   m_ObjectHideFlags: 0
@@ -21617,6 +21627,7 @@ MonoBehaviour:
   m_Script: {fileID: 11500000, guid: 2d8f41400fa074e8a8a793985092e043, type: 3}
   m_Name: 
   m_EditorClassIdentifier: 
+  monster: {fileID: 452064774}
 --- !u!65 &1359734259
 BoxCollider:
   m_ObjectHideFlags: 0
@@ -26546,6 +26557,7 @@ MonoBehaviour:
   m_Script: {fileID: 11500000, guid: 2d8f41400fa074e8a8a793985092e043, type: 3}
   m_Name: 
   m_EditorClassIdentifier: 
+  monster: {fileID: 452064774}
 --- !u!65 &1745308770
 BoxCollider:
   m_ObjectHideFlags: 0

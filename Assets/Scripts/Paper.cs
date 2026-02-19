@@ -4,10 +4,20 @@ public class Paper : MonoBehaviour, IInteractable
 {
     public static int papersLeft = 10;
 
+    [Header("Monster Reference")]
+    public MonsterAI monster;   // Drag your Monster here in Inspector
+
     public void Interact()
     {
         papersLeft = Mathf.Max(papersLeft - 1, 0);
         Debug.Log($"Paper collected! {papersLeft} left");
+
+        // Trigger hunt phase
+        if (monster != null)
+        {
+            monster.TriggerHunt();
+        }
+
         Destroy(gameObject);
     }
 
@@ -17,7 +27,6 @@ public class Paper : MonoBehaviour, IInteractable
     {
         if (other.CompareTag("Player"))
         {
-            // Visa UI, t.ex.
             Debug.Log("Press E to collect");
         }
     }
