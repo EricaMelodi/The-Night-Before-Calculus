@@ -1,8 +1,15 @@
 using UnityEngine;
 using UnityEngine.AI;
+using UnityEngine.SceneManagement;  
+
 
 public class MonsterAI : MonoBehaviour
 {
+
+    [Header("Jumpscare")]
+    public string jumpscareSceneName = "JumpScareScene";
+
+
     [Header("References")]
     public Transform player;
     private NavMeshAgent agent;
@@ -44,9 +51,25 @@ public class MonsterAI : MonoBehaviour
         musicPlaying = false;
     }
 
+
     private void Update()
     {
         float distanceToPlayer = Vector3.Distance(transform.position, player.position);
+
+        //Collider[] hitColliders = Physics.OverlapSphere(transform.position, chaseRadius);
+        //foreach (var hitCollider in hitColliders)
+        //{
+        //    if (hitCollider.CompareTag("Player") && isHunting)
+        //    {
+        //        PlayerCaught();
+        //        break; // Exit after catching the player
+        //    }
+        //}
+
+        if (distanceToPlayer < 20f && isHunting)
+        {
+            PlayerCaught();
+        }
 
         // Handle Hunt Timer
         if (isHunting)
@@ -137,4 +160,34 @@ public class MonsterAI : MonoBehaviour
             musicPlaying = false;
         }
     }
+
+    // On your Monster script
+    //private void OnCollisionEnter(Collision collision)
+
+    //{
+    //    Debug.Log($"Monster collided22   with {collision}");
+
+    //    if (collision.gameObject.CompareTag("Player"))
+    //    {
+    //        PlayerCaught();
+    //    }
+    //}
+
+    private void OnTriggerEnter(Collider other)
+    {
+        Debug.Log($"Monster collided with {other.name} (tag: {other.tag})");
+
+        if (other.CompareTag("Player"))
+        {
+            PlayerCaught();
+        }
+    }
+
+
+    private void PlayerCaught()
+    {
+        Debug.Log("Player caught! Loading jumpscare...");
+        SceneManager.LoadScene(jumpscareSceneName);
+    }
+
 }

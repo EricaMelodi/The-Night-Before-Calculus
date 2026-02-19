@@ -3153,7 +3153,7 @@ PrefabInstance:
       objectReference: {fileID: 0}
     - target: {fileID: 4227889827151656, guid: 35ca5007b9b280f4f93ae97058146c54, type: 3}
       propertyPath: m_LocalPosition.x
-      value: 2.1200044
+      value: 2.04
       objectReference: {fileID: 0}
     - target: {fileID: 4227889827151656, guid: 35ca5007b9b280f4f93ae97058146c54, type: 3}
       propertyPath: m_LocalPosition.y
@@ -3161,7 +3161,7 @@ PrefabInstance:
       objectReference: {fileID: 0}
     - target: {fileID: 4227889827151656, guid: 35ca5007b9b280f4f93ae97058146c54, type: 3}
       propertyPath: m_LocalPosition.z
-      value: -8.900002
+      value: -7.98
       objectReference: {fileID: 0}
     - target: {fileID: 4227889827151656, guid: 35ca5007b9b280f4f93ae97058146c54, type: 3}
       propertyPath: m_LocalRotation.w
@@ -4151,7 +4151,7 @@ GameObject:
   m_Icon: {fileID: 0}
   m_NavMeshLayer: 0
   m_StaticEditorFlags: 0
-  m_IsActive: 1
+  m_IsActive: 0
 --- !u!114 &258947423
 MonoBehaviour:
   m_ObjectHideFlags: 0
@@ -7472,6 +7472,7 @@ MonoBehaviour:
   m_Script: {fileID: 11500000, guid: f6af73a5ebb6241a7a43423d42188739, type: 3}
   m_Name: 
   m_EditorClassIdentifier: 
+  jumpscareSceneName: JumpscareScene
   player: {fileID: 897221311}
   walkSpeed: 20
   runSpeed: 30
@@ -7548,8 +7549,8 @@ Rigidbody:
     m_Bits: 0
   m_ImplicitCom: 1
   m_ImplicitTensor: 1
-  m_UseGravity: 1
-  m_IsKinematic: 0
+  m_UseGravity: 0
+  m_IsKinematic: 1
   m_Interpolate: 0
   m_Constraints: 80
   m_CollisionDetection: 0
@@ -7579,6 +7580,27 @@ Transform:
   m_CorrespondingSourceObject: {fileID: -8679921383154817045, guid: b985e16bc5a0f46ddaa0d7bdc0d6d935, type: 3}
   m_PrefabInstance: {fileID: 1065822217}
   m_PrefabAsset: {fileID: 0}
+--- !u!135 &452064780
+SphereCollider:
+  m_ObjectHideFlags: 0
+  m_CorrespondingSourceObject: {fileID: 0}
+  m_PrefabInstance: {fileID: 0}
+  m_PrefabAsset: {fileID: 0}
+  m_GameObject: {fileID: 452064773}
+  m_Material: {fileID: 0}
+  m_IncludeLayers:
+    serializedVersion: 2
+    m_Bits: 0
+  m_ExcludeLayers:
+    serializedVersion: 2
+    m_Bits: 0
+  m_LayerOverridePriority: 0
+  m_IsTrigger: 1
+  m_ProvidesContacts: 0
+  m_Enabled: 1
+  serializedVersion: 3
+  m_Radius: 0.3
+  m_Center: {x: 0, y: 1, z: 0}
 --- !u!4 &455700668 stripped
 Transform:
   m_CorrespondingSourceObject: {fileID: 3542294800655795289, guid: 165ddea5a6cafc75bb70917b4009359b, type: 3}
@@ -14131,8 +14153,8 @@ Transform:
   m_GameObject: {fileID: 897221305}
   serializedVersion: 2
   m_LocalRotation: {x: -0.0014520265, y: -0.705267, z: -0.0039385147, w: 0.70892936}
-  m_LocalPosition: {x: 113.21, y: 5.7313, z: -7.5325}
-  m_LocalScale: {x: 2.85, y: 6.990719, z: 2.85}
+  m_LocalPosition: {x: 113.3, y: 5.6, z: -7.5}
+  m_LocalScale: {x: 2.85, y: 6.4563875, z: 2.85}
   m_ConstrainProportionsScale: 0
   m_Children:
   - {fileID: 1051671634}
@@ -16270,7 +16292,7 @@ Transform:
   m_GameObject: {fileID: 1051671630}
   serializedVersion: 2
   m_LocalRotation: {x: 9.313226e-10, y: -0.008624017, z: -2.3283064e-10, w: 0.99996287}
-  m_LocalPosition: {x: -0.1, y: 1.721, z: -0.2}
+  m_LocalPosition: {x: -0.1, y: 1.92, z: -0.2}
   m_LocalScale: {x: 1, y: 1, z: 1}
   m_ConstrainProportionsScale: 0
   m_Children: []
@@ -16771,6 +16793,9 @@ PrefabInstance:
     - targetCorrespondingSourceObject: {fileID: 919132149155446097, guid: b985e16bc5a0f46ddaa0d7bdc0d6d935, type: 3}
       insertIndex: -1
       addedObject: {fileID: 452064774}
+    - targetCorrespondingSourceObject: {fileID: 919132149155446097, guid: b985e16bc5a0f46ddaa0d7bdc0d6d935, type: 3}
+      insertIndex: -1
+      addedObject: {fileID: 452064780}
   m_SourcePrefab: {fileID: 100100000, guid: b985e16bc5a0f46ddaa0d7bdc0d6d935, type: 3}
 --- !u!1001 &1068348483
 PrefabInstance:
