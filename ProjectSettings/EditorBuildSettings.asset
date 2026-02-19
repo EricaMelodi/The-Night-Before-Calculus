@@ -15,8 +15,11 @@ EditorBuildSettings:
     path: Assets/Scenes/MainScene.unity
     guid: 9e756bf4dc8dc49d9bc2abda5c1895bd
   - enabled: 1
-    path: Assets/Scenes/JumpScareScene.unity
+    path: Assets/JumpScareScene.unity
     guid: c46ffa17e2fa8436abb737cbcb13f451
+  - enabled: 1
+    path: Assets/Scenes/GameOverScen.unity
+    guid: 86681c06624ec4e59afc9e1a42650ab0
   m_configObjects:
     com.unity.input.settings.actions: {fileID: -944628639613478452, guid: 052faaac586de48259a63d0c4782560b, type: 3}
   m_UseUCBPForAssetBundles: 0

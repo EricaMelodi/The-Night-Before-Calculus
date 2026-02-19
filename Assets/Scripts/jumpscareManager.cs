@@ -1,9 +1,9 @@
 using UnityEngine;
 using UnityEngine.SceneManagement;
 
-public class JumpscareTimer : MonoBehaviour
+public class JumpscareManager : MonoBehaviour
 {
-    public float delay = 3f;  // Hur lång animationen är
+    public float delay = 2.8f;               // Hur lång din jumpscare-animation är i sekunder
     public string gameOverSceneName = "GameOverScen";
 
     void Start()
