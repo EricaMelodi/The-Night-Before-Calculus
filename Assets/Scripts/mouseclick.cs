@@ -10,4 +10,5 @@ public class GameOverSetup : MonoBehaviour
         // Lås upp musen så den kan röra sig fritt
         Cursor.lockState = CursorLockMode.None;
     }
+
 }
