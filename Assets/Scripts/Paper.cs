@@ -5,14 +5,13 @@ public class Paper : MonoBehaviour, IInteractable
     public static int papersLeft = 10;
 
     [Header("Monster Reference")]
-    public MonsterAI monster;   // Drag your Monster here in Inspector
+    public MonsterAI monster;   
 
     public void Interact()
     {
         papersLeft = Mathf.Max(papersLeft - 1, 0);
         Debug.Log($"Paper collected! {papersLeft} left");
 
-        // Trigger hunt phase
         if (monster != null)
         {
             monster.TriggerHunt();

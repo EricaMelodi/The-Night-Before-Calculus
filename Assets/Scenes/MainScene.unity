@@ -1898,7 +1898,7 @@ GameObject:
   - component: {fileID: 131950173}
   - component: {fileID: 131950172}
   m_Layer: 0
-  m_Name: PaperTenta (2)
+  m_Name: ExamPaper
   m_TagString: Untagged
   m_Icon: {fileID: 0}
   m_NavMeshLayer: 0
@@ -2043,7 +2043,7 @@ GameObject:
   - component: {fileID: 137153164}
   - component: {fileID: 137153163}
   m_Layer: 0
-  m_Name: PaperTenta (6)
+  m_Name: ExamPaper
   m_TagString: Untagged
   m_Icon: {fileID: 0}
   m_NavMeshLayer: 0
@@ -4006,7 +4006,7 @@ GameObject:
   m_Icon: {fileID: 0}
   m_NavMeshLayer: 0
   m_StaticEditorFlags: 0
-  m_IsActive: 0
+  m_IsActive: 1
 --- !u!114 &258947423
 MonoBehaviour:
   m_ObjectHideFlags: 0
@@ -9484,7 +9484,7 @@ GameObject:
   - component: {fileID: 572320770}
   - component: {fileID: 572320769}
   m_Layer: 0
-  m_Name: PaperTenta (4)
+  m_Name: ExamPaper
   m_TagString: Untagged
   m_Icon: {fileID: 0}
   m_NavMeshLayer: 0
@@ -9763,7 +9763,7 @@ GameObject:
   - component: {fileID: 595062444}
   - component: {fileID: 595062443}
   m_Layer: 0
-  m_Name: PaperTenta (10)
+  m_Name: ExamPaper
   m_TagString: Untagged
   m_Icon: {fileID: 0}
   m_NavMeshLayer: 0
@@ -10088,7 +10088,7 @@ GameObject:
   - component: {fileID: 616891392}
   - component: {fileID: 616891391}
   m_Layer: 0
-  m_Name: PaperTenta (8)
+  m_Name: ExamPaper
   m_TagString: Untagged
   m_Icon: {fileID: 0}
   m_NavMeshLayer: 0
@@ -16451,7 +16451,7 @@ GameObject:
   - component: {fileID: 1053301169}
   - component: {fileID: 1053301168}
   m_Layer: 0
-  m_Name: PaperTenta (3)
+  m_Name: ExamPaper
   m_TagString: Untagged
   m_Icon: {fileID: 0}
   m_NavMeshLayer: 0
@@ -18258,7 +18258,7 @@ GameObject:
   - component: {fileID: 1145653155}
   - component: {fileID: 1145653154}
   m_Layer: 0
-  m_Name: PaperTenta
+  m_Name: ExamPaper
   m_TagString: Untagged
   m_Icon: {fileID: 0}
   m_NavMeshLayer: 0
@@ -20648,7 +20648,7 @@ GameObject:
   - component: {fileID: 1293243334}
   - component: {fileID: 1293243333}
   m_Layer: 0
-  m_Name: PaperTenta (7)
+  m_Name: ExamPaper
   m_TagString: Untagged
   m_Icon: {fileID: 0}
   m_NavMeshLayer: 0
@@ -21733,7 +21733,7 @@ GameObject:
   - component: {fileID: 1359734259}
   - component: {fileID: 1359734258}
   m_Layer: 0
-  m_Name: PaperTenta (9)
+  m_Name: ExamPaper
   m_TagString: Untagged
   m_Icon: {fileID: 0}
   m_NavMeshLayer: 0
@@ -25914,7 +25914,7 @@ GameObject:
   - component: {fileID: 1689343983}
   - component: {fileID: 1689343984}
   m_Layer: 0
-  m_Name: BildMedV
+  m_Name: ExitPicture
   m_TagString: Untagged
   m_Icon: {fileID: 0}
   m_NavMeshLayer: 0
@@ -26704,7 +26704,7 @@ GameObject:
   - component: {fileID: 1745308770}
   - component: {fileID: 1745308769}
   m_Layer: 0
-  m_Name: PaperTenta (1)
+  m_Name: ExamPaper
   m_TagString: Untagged
   m_Icon: {fileID: 0}
   m_NavMeshLayer: 0

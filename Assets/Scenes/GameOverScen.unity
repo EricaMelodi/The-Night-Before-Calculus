@@ -176,7 +176,7 @@ MonoBehaviour:
   m_OnCullStateChanged:
     m_PersistentCalls:
       m_Calls: []
-  m_text: Return to startscrean
+  m_text: Return to startscreen
   m_isRightToLeft: 0
   m_fontAsset: {fileID: 11400000, guid: e3fa4f578faec4fe2b0003847466c4c6, type: 2}
   m_sharedMaterial: {fileID: -4680030406773957114, guid: e3fa4f578faec4fe2b0003847466c4c6, type: 2}
