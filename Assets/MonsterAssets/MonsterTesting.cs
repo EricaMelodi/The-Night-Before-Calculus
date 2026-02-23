@@ -9,7 +9,7 @@ public class MonsterAI : MonoBehaviour
 {
 
     [Header("Jumpscare")]
-    public string jumpis = "beforeJumpScrean";
+    public string jump = "JumpScareScene";
 
 
     [Header("References")]
@@ -195,7 +195,7 @@ public class MonsterAI : MonoBehaviour
     private void PlayerCaught()
     {
         Debug.Log("Player caught! Loading jumpscare...");
-        SceneManager.LoadScene(jumpis);
+        SceneManager.LoadScene(jump);
     }
 
 }
