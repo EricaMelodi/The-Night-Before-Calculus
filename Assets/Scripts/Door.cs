@@ -31,7 +31,7 @@ public class Door : MonoBehaviour, IInteractable
     public void Interact()
     {
         // ÄNDRA TILL 0 SENARE FIX!!!! chekkk
-        if (Paper.papersLeft == 0)
+        if (Paper.papersLeft == 10)
         {
             isOpen = !isOpen;
         }
@@ -41,7 +41,7 @@ public class Door : MonoBehaviour, IInteractable
     public string GetInteractText()
     {
         // ÄNDRA TILL 0 SENARE FIX!!!! chekkkk
-        if(Paper.papersLeft != 0)
+        if(Paper.papersLeft != 10)
         {
             return "Still missing pages";
         }

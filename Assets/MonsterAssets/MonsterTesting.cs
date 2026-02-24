@@ -1,16 +1,12 @@
-
 using UnityEngine;
 using UnityEngine.AI;
-using UnityEngine.SceneManagement;  
+using UnityEngine.SceneManagement;
 using TMPro;
-
 
 public class MonsterAI : MonoBehaviour
 {
-
     [Header("Jumpscare")]
     public string jump = "JumpScareScene";
-
 
     [Header("References")]
     public Transform player;
@@ -18,10 +14,12 @@ public class MonsterAI : MonoBehaviour
     private Animator animator;
 
     [Header("UI")]
-    public TextMeshProUGUI runText;
+    public TextMeshProUGUI runText;     // normal chase
+    public TextMeshProUGUI chaseText;   // hunt phase
     public float shakeAmount = 10f;
 
-    private Vector2 originalTextPosition;
+    private Vector2 originalRunTextPos;
+    private Vector2 originalChaseTextPos;
 
     [Header("Speed Settings")]
     public float walkSpeed = 2f;
@@ -60,21 +58,31 @@ public class MonsterAI : MonoBehaviour
 
         if (runText != null)
         {
-            originalTextPosition = runText.rectTransform.anchoredPosition;
+            originalRunTextPos = runText.rectTransform.anchoredPosition;
             runText.gameObject.SetActive(false);
         }
-    }
 
+        if (chaseText != null)
+        {
+            originalChaseTextPos = chaseText.rectTransform.anchoredPosition;
+            chaseText.gameObject.SetActive(false);
+        }
+
+        // Monster starts inactive until spawned
+        gameObject.SetActive(false);
+    }
 
     private void Update()
     {
         float distanceToPlayer = Vector3.Distance(transform.position, player.position);
 
+        // Player caught check
         if (distanceToPlayer < 10f && isHunting)
         {
             PlayerCaught();
         }
 
+        // Hunt timer
         if (isHunting)
         {
             huntTimer -= Time.deltaTime;
@@ -84,8 +92,26 @@ public class MonsterAI : MonoBehaviour
             }
         }
 
-        if (isHunting || distanceToPlayer <= chaseRadius)
+        if (isHunting)
         {
+            // HUNT PHASE
+            agent.speed = runSpeed;
+            agent.SetDestination(player.position);
+            animator.SetBool("isRunning", true);
+
+            PlayChaseMusic();
+
+            if (chaseText != null)
+                chaseText.gameObject.SetActive(true);
+
+            if (runText != null)
+                runText.gameObject.SetActive(false);
+
+            ShakeText();
+        }
+        else if (distanceToPlayer <= chaseRadius)
+        {
+            // NORMAL PROXIMITY CHASE
             agent.speed = runSpeed;
             agent.SetDestination(player.position);
             animator.SetBool("isRunning", true);
@@ -93,14 +119,16 @@ public class MonsterAI : MonoBehaviour
             PlayChaseMusic();
 
             if (runText != null)
-            {
                 runText.gameObject.SetActive(true);
-                ShakeText();
-            }
+
+            if (chaseText != null)
+                chaseText.gameObject.SetActive(false);
+
+            ShakeText();
         }
         else
         {
-            // Roaming
+            // ROAMING
             agent.speed = walkSpeed;
             animator.SetBool("isRunning", false);
 
@@ -119,7 +147,13 @@ public class MonsterAI : MonoBehaviour
             if (runText != null)
             {
                 runText.gameObject.SetActive(false);
-                runText.rectTransform.anchoredPosition = originalTextPosition;
+                runText.rectTransform.anchoredPosition = originalRunTextPos;
+            }
+
+            if (chaseText != null)
+            {
+                chaseText.gameObject.SetActive(false);
+                chaseText.rectTransform.anchoredPosition = originalChaseTextPos;
             }
         }
 
@@ -135,7 +169,18 @@ public class MonsterAI : MonoBehaviour
     private void ShakeText()
     {
         Vector2 randomOffset = Random.insideUnitCircle * shakeAmount;
-        runText.rectTransform.anchoredPosition = originalTextPosition + randomOffset;
+
+        if (runText != null && runText.gameObject.activeSelf)
+        {
+            runText.rectTransform.anchoredPosition =
+                originalRunTextPos + randomOffset;
+        }
+
+        if (chaseText != null && chaseText.gameObject.activeSelf)
+        {
+            chaseText.rectTransform.anchoredPosition =
+                originalChaseTextPos + randomOffset;
+        }
     }
 
     private void ChooseRoamTarget()
@@ -183,19 +228,20 @@ public class MonsterAI : MonoBehaviour
 
     private void OnTriggerEnter(Collider other)
     {
-        Debug.Log($"Monster collided with {other.name} (tag: {other.tag})");
-
         if (other.CompareTag("Player"))
         {
             PlayerCaught();
         }
     }
 
-
     private void PlayerCaught()
     {
-        Debug.Log("Player caught! Loading jumpscare...");
         SceneManager.LoadScene(jump);
     }
 
+    public void ActivateMonster(Vector3 spawnPosition)
+    {
+        gameObject.SetActive(true);
+        transform.position = spawnPosition;
+    }
 }
