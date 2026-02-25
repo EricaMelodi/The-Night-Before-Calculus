@@ -30,7 +30,7 @@ public class MonsterAI : MonoBehaviour
     public float roamWaitTime = 3f;
 
     [Header("Chase Settings")]
-    public float chaseRadius = 10f;
+    public float chaseRadius = 60f;
 
     [Header("Hunt Settings")]
     public float huntDuration = 30f;
@@ -77,7 +77,7 @@ public class MonsterAI : MonoBehaviour
         float distanceToPlayer = Vector3.Distance(transform.position, player.position);
 
         // Player caught check
-        if (distanceToPlayer < 10f && isHunting)
+        if (distanceToPlayer < 1.5f && CanSeePlayer())
         {
             PlayerCaught();
         }
@@ -87,42 +87,34 @@ public class MonsterAI : MonoBehaviour
         {
             huntTimer -= Time.deltaTime;
             if (huntTimer <= 0f)
-            {
                 isHunting = false;
-            }
         }
 
         if (isHunting)
         {
-            // HUNT PHASE
+            // HUNT PHASE: always chase player
             agent.speed = runSpeed;
             agent.SetDestination(player.position);
             animator.SetBool("isRunning", true);
 
             PlayChaseMusic();
 
-            if (chaseText != null)
-                chaseText.gameObject.SetActive(true);
-
-            if (runText != null)
-                runText.gameObject.SetActive(false);
+            if (chaseText != null) chaseText.gameObject.SetActive(true);
+            if (runText != null) runText.gameObject.SetActive(false);
 
             ShakeText();
         }
-        else if (distanceToPlayer <= chaseRadius)
+        else if (CanSeePlayer())
         {
-            // NORMAL PROXIMITY CHASE
+            // NORMAL PROXIMITY CHASE: only chase if line of sight is clear
             agent.speed = runSpeed;
             agent.SetDestination(player.position);
             animator.SetBool("isRunning", true);
 
             PlayChaseMusic();
 
-            if (runText != null)
-                runText.gameObject.SetActive(true);
-
-            if (chaseText != null)
-                chaseText.gameObject.SetActive(false);
+            if (runText != null) runText.gameObject.SetActive(true);
+            if (chaseText != null) chaseText.gameObject.SetActive(false);
 
             ShakeText();
         }
@@ -160,10 +152,26 @@ public class MonsterAI : MonoBehaviour
         animator.SetFloat("speed", agent.velocity.magnitude);
     }
 
-    public void TriggerHunt()
+ 
+    private bool CanSeePlayer()
     {
-        isHunting = true;
-        huntTimer = huntDuration;
+        Vector3 directionToPlayer = player.position - transform.position;
+        float distance = directionToPlayer.magnitude;
+
+        // Hunt mode ignores obstacles and vision cone
+        if (isHunting) return distance <= chaseRadius;
+
+        // Raycast to check line of sight
+        RaycastHit hit;
+        if (Physics.Raycast(transform.position + Vector3.up, directionToPlayer.normalized, out hit, chaseRadius))
+        {
+            if (hit.collider.CompareTag("Player"))
+            {
+                return true;
+            }
+        }
+
+        return false;
     }
 
     private void ShakeText()
@@ -237,6 +245,12 @@ public class MonsterAI : MonoBehaviour
     private void PlayerCaught()
     {
         SceneManager.LoadScene(jump);
+    }
+
+    public void TriggerHunt()
+    {
+        isHunting = true;
+        huntTimer = huntDuration;
     }
 
     public void ActivateMonster(Vector3 spawnPosition)
