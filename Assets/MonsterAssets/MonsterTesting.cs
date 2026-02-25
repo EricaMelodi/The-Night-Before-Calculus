@@ -26,7 +26,7 @@ public class MonsterAI : MonoBehaviour
     public float runSpeed = 5f;
 
     [Header("Roaming Settings")]
-    public float roamRadius = 50f;
+    public float roamRadius = 100f;
     public float roamWaitTime = 3f;
 
     [Header("Chase Settings")]
