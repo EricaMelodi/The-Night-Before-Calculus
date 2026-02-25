@@ -229,6 +229,46 @@ PrefabInstance:
       propertyPath: 'm_Materials.Array.data[0]'
       value: 
       objectReference: {fileID: 2100000, guid: ced2419828761490c86153e6dfb9bf46, type: 2}
+    - target: {fileID: 9006338074713301546, guid: b985e16bc5a0f46ddaa0d7bdc0d6d935, type: 3}
+      propertyPath: m_LocalPosition.x
+      value: 0.00000060140155
+      objectReference: {fileID: 0}
+    - target: {fileID: 9006338074713301546, guid: b985e16bc5a0f46ddaa0d7bdc0d6d935, type: 3}
+      propertyPath: m_LocalPosition.y
+      value: 0.1559996
+      objectReference: {fileID: 0}
+    - target: {fileID: 9006338074713301546, guid: b985e16bc5a0f46ddaa0d7bdc0d6d935, type: 3}
+      propertyPath: m_LocalPosition.z
+      value: -0.0030004233
+      objectReference: {fileID: 0}
+    - target: {fileID: 9006338074713301546, guid: b985e16bc5a0f46ddaa0d7bdc0d6d935, type: 3}
+      propertyPath: m_LocalRotation.w
+      value: 0.9133593
+      objectReference: {fileID: 0}
+    - target: {fileID: 9006338074713301546, guid: b985e16bc5a0f46ddaa0d7bdc0d6d935, type: 3}
+      propertyPath: m_LocalRotation.x
+      value: -0.40694147
+      objectReference: {fileID: 0}
+    - target: {fileID: 9006338074713301546, guid: b985e16bc5a0f46ddaa0d7bdc0d6d935, type: 3}
+      propertyPath: m_LocalRotation.y
+      value: -0.001214385
+      objectReference: {fileID: 0}
+    - target: {fileID: 9006338074713301546, guid: b985e16bc5a0f46ddaa0d7bdc0d6d935, type: 3}
+      propertyPath: m_LocalRotation.z
+      value: -0.01311484
+      objectReference: {fileID: 0}
+    - target: {fileID: 9006338074713301546, guid: b985e16bc5a0f46ddaa0d7bdc0d6d935, type: 3}
+      propertyPath: m_LocalEulerAnglesHint.x
+      value: -48.022
+      objectReference: {fileID: 0}
+    - target: {fileID: 9006338074713301546, guid: b985e16bc5a0f46ddaa0d7bdc0d6d935, type: 3}
+      propertyPath: m_LocalEulerAnglesHint.y
+      value: 0.724
+      objectReference: {fileID: 0}
+    - target: {fileID: 9006338074713301546, guid: b985e16bc5a0f46ddaa0d7bdc0d6d935, type: 3}
+      propertyPath: m_LocalEulerAnglesHint.z
+      value: -1.968
+      objectReference: {fileID: 0}
     m_RemovedComponents: []
     m_RemovedGameObjects: []
     m_AddedGameObjects:
@@ -361,7 +401,11 @@ MonoBehaviour:
   m_Script: {fileID: 11500000, guid: f6af73a5ebb6241a7a43423d42188739, type: 3}
   m_Name: 
   m_EditorClassIdentifier: 
+  jump: JumpScareScene
   player: {fileID: 0}
+  runText: {fileID: 0}
+  chaseText: {fileID: 0}
+  shakeAmount: 10
   walkSpeed: 20
   runSpeed: 30
   roamRadius: 100

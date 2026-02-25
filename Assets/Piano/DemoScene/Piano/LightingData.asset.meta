@@ -1,0 +1,15 @@
+fileFormatVersion: 2
+guid: 5ae7f14911d5d4a48b2ff9d4c180aaa3
+NativeFormatImporter:
+  externalObjects: {}
+  mainObjectFileID: 112000000
+  userData: 
+  assetBundleName: 
+  assetBundleVariant: 
+AssetOrigin:
+  serializedVersion: 1
+  productId: 114139
+  packageName: Grand Piano
+  packageVersion: 2.0
+  assetPath: Assets/Piano/DemoScene/Piano/LightingData.asset
+  uploadId: 814814

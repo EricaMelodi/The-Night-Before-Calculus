@@ -1,0 +1,14 @@
+fileFormatVersion: 2
+guid: c490754578b044d43b70d7b12e097873
+PrefabImporter:
+  externalObjects: {}
+  userData: 
+  assetBundleName: 
+  assetBundleVariant: 
+AssetOrigin:
+  serializedVersion: 1
+  productId: 114139
+  packageName: Grand Piano
+  packageVersion: 2.0
+  assetPath: Assets/Piano/Prefabs/PianoA.prefab
+  uploadId: 814814
