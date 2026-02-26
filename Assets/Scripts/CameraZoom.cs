@@ -7,9 +7,12 @@ public class JumpscareZoom : MonoBehaviour
     public float targetFOV = 60f;
     public float zoomSpeed = 50f;
 
+    public AudioSource scareSound;
+
     void StartZoom()
     {
         StartCoroutine(ZoomIn());
+        scareSound.Play();
     }
 
     IEnumerator ZoomIn()
