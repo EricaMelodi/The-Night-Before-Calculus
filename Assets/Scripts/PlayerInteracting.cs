@@ -4,7 +4,7 @@ using UnityEngine;
 public class PlayerInteraction : MonoBehaviour
 {
     [Header("Settings")]
-    public float interactDistance = 80f;
+    public float interactDistance = 3f;
     public TextMeshProUGUI interactPrompt;
 
     private Camera cam;
@@ -32,7 +32,7 @@ public class PlayerInteraction : MonoBehaviour
     }
     void CheckForInteractable()
     {
-        float radius = 2.0f; // Hur stor “tålighet” raycasten ska ha
+        float radius = 3.5f; // Hur stor “tålighet” raycasten ska ha
         Ray ray = new Ray(cam.transform.position, cam.transform.forward);
         RaycastHit hit;
 

@@ -3126,11 +3126,11 @@ BoxCollider:
     serializedVersion: 2
     m_Bits: 0
   m_LayerOverridePriority: 0
-  m_IsTrigger: 0
+  m_IsTrigger: 1
   m_ProvidesContacts: 0
   m_Enabled: 1
   serializedVersion: 3
-  m_Size: {x: 1, y: 0.99999994, z: 6.1232336e-17}
+  m_Size: {x: 2, y: 2, z: 18}
   m_Center: {x: 0, y: 0, z: 0}
 --- !u!64 &131950174
 MeshCollider:
@@ -3216,7 +3216,7 @@ Transform:
   m_GameObject: {fileID: 131950171}
   serializedVersion: 2
   m_LocalRotation: {x: 0.6030421, y: 0.3692428, z: -0.3692428, w: 0.6030421}
-  m_LocalPosition: {x: 37.14, y: 7.6, z: 42.03}
+  m_LocalPosition: {x: 34.3, y: 7.6, z: 40.58}
   m_LocalScale: {x: 2.0518, y: 3.181316, z: 2.0518}
   m_ConstrainProportionsScale: 0
   m_Children: []
@@ -3286,7 +3286,7 @@ BoxCollider:
   m_ProvidesContacts: 0
   m_Enabled: 1
   serializedVersion: 3
-  m_Size: {x: 1, y: 0.99999994, z: 6.1232336e-17}
+  m_Size: {x: 2, y: 2, z: 18}
   m_Center: {x: 0, y: 0, z: 0}
 --- !u!64 &137153165
 MeshCollider:
@@ -11611,7 +11611,6 @@ MonoBehaviour:
   roamRadius: 100
   roamWaitTime: 0
   chaseRadius: 60
-  fieldOfView: 120
   huntDuration: 30
   chaseMusicSource: {fileID: 1095419727}
   chaseMusicClip: {fileID: 8300000, guid: 24ec0c26f63dfaf9d85ba7815a6db40b, type: 3}
@@ -15082,7 +15081,7 @@ BoxCollider:
   m_ProvidesContacts: 0
   m_Enabled: 1
   serializedVersion: 3
-  m_Size: {x: 1, y: 0.99999994, z: 6.1232336e-17}
+  m_Size: {x: 2, y: 2, z: 18}
   m_Center: {x: 0, y: 0, z: 0}
 --- !u!64 &572320771
 MeshCollider:
@@ -15448,7 +15447,7 @@ BoxCollider:
   m_ProvidesContacts: 0
   m_Enabled: 1
   serializedVersion: 3
-  m_Size: {x: 1, y: 0.99999994, z: 6.1232336e-17}
+  m_Size: {x: 2, y: 2, z: 18}
   m_Center: {x: 0, y: 0, z: 0}
 --- !u!64 &595062445
 MeshCollider:
@@ -15917,7 +15916,7 @@ BoxCollider:
   m_ProvidesContacts: 0
   m_Enabled: 1
   serializedVersion: 3
-  m_Size: {x: 1, y: 0.99999994, z: 6.1232336e-17}
+  m_Size: {x: 2, y: 2, z: 18}
   m_Center: {x: 0, y: 0, z: 0}
 --- !u!64 &616891393
 MeshCollider:
@@ -26565,7 +26564,7 @@ BoxCollider:
   m_ProvidesContacts: 0
   m_Enabled: 1
   serializedVersion: 3
-  m_Size: {x: 1, y: 0.99999994, z: 6.1232336e-17}
+  m_Size: {x: 2, y: 2, z: 18}
   m_Center: {x: 0, y: 0, z: 0}
 --- !u!64 &1053301170
 MeshCollider:
@@ -29616,7 +29615,7 @@ BoxCollider:
   m_ProvidesContacts: 0
   m_Enabled: 1
   serializedVersion: 3
-  m_Size: {x: 1, y: 0.99999994, z: 6.1232336e-17}
+  m_Size: {x: 2, y: 2, z: 18}
   m_Center: {x: 0, y: 0, z: 0}
 --- !u!64 &1145653156
 MeshCollider:
@@ -33268,7 +33267,7 @@ BoxCollider:
   m_ProvidesContacts: 0
   m_Enabled: 1
   serializedVersion: 3
-  m_Size: {x: 1, y: 0.99999994, z: 6.1232336e-17}
+  m_Size: {x: 2, y: 2, z: 18}
   m_Center: {x: 0, y: 0, z: 0}
 --- !u!64 &1293243335
 MeshCollider:
@@ -35100,7 +35099,7 @@ BoxCollider:
   m_ProvidesContacts: 0
   m_Enabled: 1
   serializedVersion: 3
-  m_Size: {x: 1, y: 0.99999994, z: 6.1232336e-17}
+  m_Size: {x: 2, y: 2, z: 18}
   m_Center: {x: 0, y: 0, z: 0}
 --- !u!64 &1359734260
 MeshCollider:
@@ -45018,11 +45017,11 @@ BoxCollider:
     serializedVersion: 2
     m_Bits: 0
   m_LayerOverridePriority: 0
-  m_IsTrigger: 0
+  m_IsTrigger: 1
   m_ProvidesContacts: 0
   m_Enabled: 1
   serializedVersion: 3
-  m_Size: {x: 1, y: 0.99999994, z: 6.1232336e-17}
+  m_Size: {x: 2, y: 2, z: 10}
   m_Center: {x: 0, y: 0, z: 0}
 --- !u!64 &1745308771
 MeshCollider:
