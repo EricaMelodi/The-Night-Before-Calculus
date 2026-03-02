@@ -29,6 +29,7 @@ public class JumpscareZoom : MonoBehaviour
 
     public void ReturnToGame()
     {
-        SceneManager.LoadScene(previousScene);
+        SceneManager.UnloadSceneAsync(gameObject.scene.name);
+        Paper.isLoadingScene = false;
     }
 }

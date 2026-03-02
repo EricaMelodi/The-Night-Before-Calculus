@@ -1,7 +1,13 @@
+using System.Threading;
 using UnityEngine;
+using UnityEngine.SceneManagement;
+
 
 public class Paper : MonoBehaviour, IInteractable
+
 {
+    public static bool isLoadingScene = false;
+
     public static int papersLeft = 10;
 
     public static PapersUI papersUI; // referens till UI
@@ -27,14 +33,19 @@ public class Paper : MonoBehaviour, IInteractable
         }
     }
 
+
     public void Interact()
     {
         papersLeft = Mathf.Max(papersLeft - 1, 0);
-
-        // 🔥 UPPDATERA UI
         papersUI.UpdateText();
 
         Debug.Log($"Paper collected! {papersLeft} left");
+
+        if (papersLeft <= 8 && !isLoadingScene)
+        {
+            isLoadingScene = true;
+            SceneManager.LoadScene("PianoScene", LoadSceneMode.Additive);
+        }
 
         if (papersLeft == 8 && monster != null && !monster.gameObject.activeInHierarchy)
         {
