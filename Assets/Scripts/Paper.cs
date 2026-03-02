@@ -41,7 +41,7 @@ public class Paper : MonoBehaviour, IInteractable
 
         Debug.Log($"Paper collected! {papersLeft} left");
 
-        if (papersLeft <= 8 && !isLoadingScene)
+        if (papersLeft == 8 && !isLoadingScene)
         {
             isLoadingScene = true;
             SceneManager.LoadScene("PianoScene", LoadSceneMode.Additive);

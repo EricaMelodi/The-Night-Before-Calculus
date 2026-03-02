@@ -1,5 +1,5 @@
-    
 using UnityEngine;
+using UnityEngine.UI;
 
 [RequireComponent(typeof(CharacterController))]
 public class PlayerMovement : MonoBehaviour
@@ -22,25 +22,36 @@ public class PlayerMovement : MonoBehaviour
     public float crouchHeight = 1f;
     public float cameraCrouchOffset = 0.5f;
 
-    private Vector3 moveDirection;
-    private float rotationX = 0;
-    private CharacterController controller;
-    private float defaultCameraY;
+    [Header("Stamina")]
+    public float maxStamina = 5f;
+    public float staminaDrainRate = 1f;
+    public float staminaRegenRate = 0.8f;
+    public float staminaRegenDelay = 1.5f;
+    [HideInInspector] public float currentStamina;
+    private float staminaRegenTimer;
+
+    [Header("UI")]
+    public Slider staminaSlider; // assign per scene
 
     [Header("Sounds")]
     public AudioClip footstepClip;
     public AudioSource walkingAudioSource;
-
     public AudioClip sprintStepClip;
     public AudioSource sprintingAudioSource;
+    public float walkingStepInterval = 0.5f;
+    public float sprintingStepInterval = 0.3f;
+
+    private Vector3 moveDirection;
+    private float rotationX = 0;
+    private CharacterController controller;
+    private float defaultCameraY;
     private float footstepTimer;
-    public float walkingStepInterval;
-    public float sprintingStepInterval;
 
     void Start()
     {
         controller = GetComponent<CharacterController>();
         defaultCameraY = playerCamera.transform.localPosition.y;
+        currentStamina = maxStamina;
 
         Cursor.lockState = CursorLockMode.Locked;
         Cursor.visible = false;
@@ -50,15 +61,24 @@ public class PlayerMovement : MonoBehaviour
     {
         HandleMovement();
         HandleMouseLook();
+
+        // Update UI safely
+        if (staminaSlider != null && staminaSlider.gameObject != null)
+            staminaSlider.value = currentStamina / maxStamina;
     }
 
     void HandleMovement()
     {
-        bool isRunning = Input.GetKey(KeyCode.LeftShift);
+        bool wantsToRun = Input.GetKey(KeyCode.LeftShift);
         bool isCrouching = Input.GetKey(KeyCode.LeftControl);
 
-        float speed = walkSpeed;
+        bool isMovingInput =
+            Mathf.Abs(Input.GetAxis("Vertical")) > 0.1f ||
+            Mathf.Abs(Input.GetAxis("Horizontal")) > 0.1f;
 
+        bool isRunning = wantsToRun && currentStamina > 0f && !isCrouching;
+
+        float speed = walkSpeed;
         if (isCrouching)
             speed = crouchSpeed;
         else if (isRunning)
@@ -87,13 +107,30 @@ public class PlayerMovement : MonoBehaviour
 
         moveDirection.y = yVelocity;
 
-        // walking sounds
+        controller.Move(moveDirection * Time.deltaTime);
+
+        // ===== STAMINA SYSTEM =====
+        if (isRunning && isMovingInput && controller.isGrounded)
+        {
+            currentStamina -= staminaDrainRate * Time.deltaTime;
+            staminaRegenTimer = 0f;
+        }
+        else
+        {
+            if (staminaRegenTimer < staminaRegenDelay)
+                staminaRegenTimer += Time.deltaTime;
+            else if (currentStamina < maxStamina)
+                currentStamina += staminaRegenRate * Time.deltaTime;
+        }
+
+        currentStamina = Mathf.Clamp(currentStamina, 0f, maxStamina);
+
+        // ===== FOOTSTEP SOUNDS =====
         bool isMoving = controller.velocity.magnitude > 0.1f;
         footstepTimer -= Time.deltaTime;
 
         if (controller.isGrounded && isMoving)
         {
-
             if (footstepTimer <= 0f)
             {
                 if (isRunning)
@@ -109,7 +146,7 @@ public class PlayerMovement : MonoBehaviour
             }
         }
 
-        // Crouch height + camera
+        // ===== CROUCH =====
         float targetHeight = isCrouching ? crouchHeight : defaultHeight;
         controller.height = Mathf.Lerp(controller.height, targetHeight, Time.deltaTime * 10f);
 
@@ -120,8 +157,6 @@ public class PlayerMovement : MonoBehaviour
         Vector3 camPos = playerCamera.transform.localPosition;
         camPos.y = Mathf.Lerp(camPos.y, targetCamY, Time.deltaTime * 10f);
         playerCamera.transform.localPosition = camPos;
-
-        controller.Move(moveDirection * Time.deltaTime);
     }
 
     void HandleMouseLook()
