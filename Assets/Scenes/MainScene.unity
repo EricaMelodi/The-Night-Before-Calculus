@@ -22667,6 +22667,7 @@ MonoBehaviour:
   m_EditorClassIdentifier: 
   pausePanel: {fileID: 1233287810}
   settingsPanel: {fileID: 2053764427}
+  playerController: {fileID: 897221312}
 --- !u!114 &809019311
 MonoBehaviour:
   m_ObjectHideFlags: 0

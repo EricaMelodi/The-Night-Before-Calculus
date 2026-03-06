@@ -6,6 +6,7 @@ public class PauseMenu : MonoBehaviour
     [Header("UI Panels")]
     public GameObject pausePanel;    
     public GameObject settingsPanel; 
+    public MonoBehaviour playerController;
 
     void Update()
     {
@@ -30,6 +31,8 @@ public class PauseMenu : MonoBehaviour
         settingsPanel.SetActive(false);
         Time.timeScale = 1f;
 
+        playerController.enabled = true;
+
         Cursor.visible = false;
         Cursor.lockState = CursorLockMode.Locked;
         Debug.Log("Game Resumed");
@@ -40,6 +43,8 @@ public class PauseMenu : MonoBehaviour
         pausePanel.SetActive(true);
         settingsPanel.SetActive(false);
         Time.timeScale = 0f;
+
+        playerController.enabled = false;
 
         Cursor.visible = true;
         Cursor.lockState = CursorLockMode.None;
