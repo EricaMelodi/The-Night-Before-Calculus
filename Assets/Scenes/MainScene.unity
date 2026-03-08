@@ -42060,8 +42060,8 @@ MonoBehaviour:
       m_Calls: []
   m_text: 10 papers left
   m_isRightToLeft: 0
-  m_fontAsset: {fileID: 11400000, guid: bf2dae2f747144984b296fac77ff69ab, type: 2}
-  m_sharedMaterial: {fileID: -2322339485127617159, guid: bf2dae2f747144984b296fac77ff69ab, type: 2}
+  m_fontAsset: {fileID: 11400000, guid: 47008f3fb071a4c1298af14f4a0e5c54, type: 2}
+  m_sharedMaterial: {fileID: -3793691375000504245, guid: 47008f3fb071a4c1298af14f4a0e5c54, type: 2}
   m_fontSharedMaterials: []
   m_fontMaterial: {fileID: 0}
   m_fontMaterials: []
