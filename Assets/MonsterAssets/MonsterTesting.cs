@@ -68,7 +68,6 @@ public class MonsterAI : MonoBehaviour
             chaseText.gameObject.SetActive(false);
         }
 
-        // Monster starts inactive until spawned
         gameObject.SetActive(false);
     }
 
@@ -76,8 +75,8 @@ public class MonsterAI : MonoBehaviour
     {
         float distanceToPlayer = Vector3.Distance(transform.position, player.position);
 
-        // Player caught check
-        if (distanceToPlayer < 1.5f && CanSeePlayer())
+        // Player caught 
+        if (distanceToPlayer < 2f && CanSeePlayer())
         {
             PlayerCaught();
         }
@@ -92,7 +91,6 @@ public class MonsterAI : MonoBehaviour
 
         if (isHunting)
         {
-            // HUNT PHASE: always chase player
             agent.speed = runSpeed;
             agent.SetDestination(player.position);
             animator.SetBool("isRunning", true);
@@ -106,7 +104,6 @@ public class MonsterAI : MonoBehaviour
         }
         else if (CanSeePlayer())
         {
-            // NORMAL PROXIMITY CHASE: only chase if line of sight is clear
             agent.speed = runSpeed;
             agent.SetDestination(player.position);
             animator.SetBool("isRunning", true);
@@ -120,7 +117,6 @@ public class MonsterAI : MonoBehaviour
         }
         else
         {
-            // ROAMING
             agent.speed = walkSpeed;
             animator.SetBool("isRunning", false);
 
@@ -158,10 +154,8 @@ public class MonsterAI : MonoBehaviour
         Vector3 directionToPlayer = player.position - transform.position;
         float distance = directionToPlayer.magnitude;
 
-        // Hunt mode ignores obstacles and vision cone
         if (isHunting) return distance <= chaseRadius;
 
-        // Raycast to check line of sight
         RaycastHit hit;
         if (Physics.Raycast(transform.position + Vector3.up, directionToPlayer.normalized, out hit, chaseRadius))
         {
