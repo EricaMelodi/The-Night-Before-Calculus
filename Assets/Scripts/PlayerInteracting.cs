@@ -32,7 +32,7 @@ public class PlayerInteraction : MonoBehaviour
     }
     void CheckForInteractable()
     {
-        float radius = 3.5f; // Hur stor “tålighet” raycasten ska ha
+        float radius = 3.5f; 
         Ray ray = new Ray(cam.transform.position, cam.transform.forward);
         RaycastHit hit;
 
